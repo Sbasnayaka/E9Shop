@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E9 Shop | Home</title>
+    <link rel="icon" href="assets/icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="logo" href="index.html" aria-label="E9 Shop home">
+          <img src="assets/logo.png" alt="E9 Shop logo" />
+        </a>
+        <form class="search-pill" role="search" aria-label="Search">
+          <input type="search" name="q" placeholder="search" aria-label="Search E9 Shop" />
+          <button type="submit">search</button>
+        </form>
+        <button id="menuToggle" class="icon-button" aria-label="Open menu" aria-expanded="false">
+          <span class="hamburger" aria-hidden="true"></span>
+        </button>
+      </header>
+
+      <nav id="drawer" class="drawer" aria-hidden="true">
+        <div class="drawer-panel">
+          <div class="drawer-inner">
+            <h2 class="drawer-title">Join our community <span class="accent">Free !!</span></h2>
+            <p class="drawer-desc">Stay updated with the latest news and services.</p>
+            <form id="drawer-user-form" class="drawer-form" novalidate>
+              <div class="field">
+                <label for="drawer-name">Name</label>
+                <input class="input" id="drawer-name" name="name" type="text" placeholder="Your name" required />
+              </div>
+              <div class="field">
+                <label for="drawer-mobile">Mobile Number</label>
+                <input class="input" id="drawer-mobile" name="mobile" type="tel" placeholder="Mobile number" required />
+              </div>
+              <div class="field">
+                <label for="drawer-country">Country</label>
+                <input class="input" id="drawer-country" name="country" type="text" placeholder="Country" required />
+              </div>
+              <button class="pill" type="submit">Send</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <main>
+        <section class="hero-card" aria-label="Intro banner">
+          <div class="hero-visual" role="img" aria-label="E9 Shop banner with scan QR prompt"></div>
+        </section>
+
+        <section class="section" aria-labelledby="main-services">
+          <div class="section-heading">
+            <span id="main-services">Our Main Services</span>
+            <span class="progress-dots">
+              <span></span><i></i><i></i><i></i>
+            </span>
+          </div>
+          <div class="service-grid">
+            <a class="card" href="all-services.html">
+              <img src="assets/job.png" alt="Jobs" />
+              <div class="card-title">Jobs</div>
+            </a>
+            <a class="card" href="all-services.html">
+              <img src="assets/visa.png" alt="Visa and Legal" />
+              <div class="card-title">Visa &amp; Legal</div>
+            </a>
+            <a class="card" href="all-services.html">
+              <img src="assets/money.png" alt="Money and E9Pay" />
+              <div class="card-title">Money &amp; E9Pay</div>
+            </a>
+            <a class="card" href="all-services.html">
+              <img src="assets/langage.png" alt="Language and TOPIK" />
+              <div class="card-title">Language &amp; TOPIK</div>
+            </a>
+            <a class="card" href="all-services.html">
+              <img src="assets/health.png" alt="Health" />
+              <div class="card-title">Health</div>
+            </a>
+            <a class="card" href="all-services.html">
+              <img src="assets/support.png" alt="Support" />
+              <div class="card-title">Support</div>
+            </a>
+          </div>
+        </section>
+
+        <section class="section">
+          <a class="link-card" href="all-services.html">
+            <span class="link-dot" aria-hidden="true"></span>
+            <div>
+              <div class="card-title">View Our All Services</div>
+            </div>
+            <div class="mini-grid-icon" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </a>
+        </section>
+
+        <section class="section" id="topics" aria-labelledby="related-topics">
+          <div class="section-heading">
+            <span id="related-topics">Related Topics</span>
+            <span class="progress-dots">
+              <span></span><i></i><i></i>
+            </span>
+          </div>
+          <div class="related-list">
+            <article class="topic-card">
+              <div class="topic-thumb">
+                <img src="assets/job.png" alt="Korean job vacancy thumbnail" />
+              </div>
+              <div class="topic-meta">
+                <div class="topic-title">Korean Job Vacancy</div>
+                <div class="topic-desc">Read more about the latest vacancies and requirements.</div>
+                <a class="topic-link" href="#">Read more &gt;&gt;</a>
+              </div>
+            </article>
+            <article class="topic-card">
+              <div class="topic-thumb">
+                <img src="assets/ayurveda.png" alt="Health support thumbnail" />
+              </div>
+              <div class="topic-meta">
+                <div class="topic-title">Health Support</div>
+                <div class="topic-desc">Learn how we support your well-being while abroad.</div>
+                <a class="topic-link" href="#">Read more &gt;&gt;</a>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <nav class="bottom-nav" aria-label="Primary">
+      <a class="nav-link active" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 9.5 12 3l9 6.5V21H3z" />
+          <path d="M9 21v-6h6v6" />
+        </svg>
+        <span>Home</span>
+      </a>
+      <a class="nav-link" href="all-services.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" rx="2" />
+          <rect x="14" y="3" width="7" height="7" rx="2" />
+          <rect x="3" y="14" width="7" height="7" rx="2" />
+          <rect x="14" y="14" width="7" height="7" rx="2" />
+        </svg>
+        <span>Services</span>
+      </a>
+      <a class="nav-link" href="user-info.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="8" r="4" />
+          <path d="M4 21c0-4 4-7 8-7s8 3 8 7" />
+        </svg>
+        <span>Join</span>
+      </a>
+      <a class="nav-link" href="#topics">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 15V5a2 2 0 0 0-2-2H8l-5 5v7a2 2 0 0 0 2 2h5" />
+          <circle cx="17" cy="17" r="5" />
+          <path d="m16 17 1 1 2-2" />
+        </svg>
+        <span>Topics</span>
+      </a>
+    </nav>
+  </body>
+</html>
+
+

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E9 Shop | All Services</title>
+    <link rel="icon" href="assets/icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="logo" href="index.html" aria-label="E9 Shop home">
+          <img src="assets/logo.png" alt="E9 Shop logo" />
+        </a>
+        <form class="search-pill" role="search" aria-label="Search">
+          <input type="search" name="q" placeholder="search" aria-label="Search E9 Shop" />
+          <button type="submit">search</button>
+        </form>
+        <button id="menuToggle" class="icon-button" aria-label="Open menu" aria-expanded="false">
+          <span class="hamburger" aria-hidden="true"></span>
+        </button>
+      </header>
+
+      <nav id="drawer" class="drawer" aria-hidden="true">
+        <div class="drawer-panel">
+          <h2 class="drawer-title">Join our community <span class="accent">Free !!</span></h2>
+          <p class="drawer-desc">Stay updated with the latest news and services.</p>
+          <form id="drawer-user-form" class="drawer-form" novalidate>
+            <div class="field">
+              <label for="drawer-name">Name</label>
+              <input class="input" id="drawer-name" name="name" type="text" placeholder="Your name" required />
+            </div>
+            <div class="field">
+              <label for="drawer-mobile">Mobile Number</label>
+              <input class="input" id="drawer-mobile" name="mobile" type="tel" placeholder="Mobile number" required />
+            </div>
+            <div class="field">
+              <label for="drawer-country">Country</label>
+              <input class="input" id="drawer-country" name="country" type="text" placeholder="Country" required />
+            </div>
+            <button class="pill" type="submit">Send</button>
+          </form>
+        </div>
+      </nav>
+
+      <main class="section">
+        <div class="section-heading">
+          <span>Our All Services</span>
+          <span class="progress-dots">
+            <span></span><i></i><i></i><i></i>
+          </span>
+          <button class="text-button" data-back>Back</button>
+        </div>
+
+        <div class="all-services-list">
+          <article class="service-item">
+            <div class="topic-thumb">
+              <img src="assets/job.png" alt="Jobs vacancy" />
+            </div>
+            <div class="topic-meta">
+              <div class="topic-title">Jobs vacancy</div>
+              <div class="topic-desc">
+                Sending workers for South Korean job opportunities across Fishery, Manufacture, Construction, and Shipbuilding.
+              </div>
+              <a class="topic-link" href="#">Read more &gt;&gt;</a>
+            </div>
+          </article>
+
+          <article class="service-item">
+            <div class="topic-thumb">
+              <img src="assets/academy logo.png" alt="Sial Academy" />
+            </div>
+            <div class="topic-meta">
+              <div class="topic-title">Sial Academy</div>
+              <div class="topic-desc">
+                The best cyber campus. Founders of Progress Based Adaptive Learning (PBAL) and innovative teaching.
+              </div>
+              <a class="topic-link" href="#">Read more &gt;&gt;</a>
+            </div>
+          </article>
+
+          <article class="service-item">
+            <div class="topic-thumb">
+              <img src="assets/air tickets.png" alt="Air Tickets" />
+            </div>
+            <div class="topic-meta">
+              <div class="topic-title">Air Tickets</div>
+              <div class="topic-desc">
+                Book flights for your journey with categories covering key sectors including shipping and manufacturing.
+              </div>
+              <a class="topic-link" href="#">Read more &gt;&gt;</a>
+            </div>
+          </article>
+
+          <article class="service-item">
+            <div class="topic-thumb">
+              <img src="assets/visa consultation .png" alt="Visa & Legal" />
+            </div>
+            <div class="topic-meta">
+              <div class="topic-title">Visa &amp; Legal</div>
+              <div class="topic-desc">
+                Consultation on visas, contracts, and compliance to keep you secure abroad.
+              </div>
+              <a class="topic-link" href="#">Read more &gt;&gt;</a>
+            </div>
+          </article>
+
+          <article class="service-item">
+            <div class="topic-thumb">
+              <img src="assets/money.png" alt="Money & E9Pay" />
+            </div>
+            <div class="topic-meta">
+              <div class="topic-title">Money &amp; E9Pay</div>
+              <div class="topic-desc">
+                Safe transfers, remittances, and day-to-day spending support with E9Pay.
+              </div>
+              <a class="topic-link" href="#">Read more &gt;&gt;</a>
+            </div>
+          </article>
+        </div>
+      </main>
+    </div>
+
+    <nav class="bottom-nav" aria-label="Primary">
+      <a class="nav-link" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 9.5 12 3l9 6.5V21H3z" />
+          <path d="M9 21v-6h6v6" />
+        </svg>
+        <span>Home</span>
+      </a>
+      <a class="nav-link active" href="all-services.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" rx="2" />
+          <rect x="14" y="3" width="7" height="7" rx="2" />
+          <rect x="3" y="14" width="7" height="7" rx="2" />
+          <rect x="14" y="14" width="7" height="7" rx="2" />
+        </svg>
+        <span>Services</span>
+      </a>
+      <a class="nav-link" href="user-info.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="8" r="4" />
+          <path d="M4 21c0-4 4-7 8-7s8 3 8 7" />
+        </svg>
+        <span>Join</span>
+      </a>
+      <a class="nav-link" href="index.html#topics">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 15V5a2 2 0 0 0-2-2H8l-5 5v7a2 2 0 0 0 2 2h5" />
+          <circle cx="17" cy="17" r="5" />
+          <path d="m16 17 1 1 2-2" />
+        </svg>
+        <span>Topics</span>
+      </a>
+    </nav>
+  </body>
+</html>
+
+

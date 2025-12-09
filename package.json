@@ -1,0 +1,18 @@
+{
+  "name": "e9shop",
+  "version": "1.0.0",
+  "description": "Pixel-accurate mobile-first front-end for E9 Shop",
+  "scripts": {
+    "dev": "npx http-server -c-1 -p 4173 ."
+  },
+  "keywords": [
+    "e9",
+    "shop",
+    "frontend",
+    "figma"
+  ],
+  "author": "",
+  "license": "MIT"
+}
+
+

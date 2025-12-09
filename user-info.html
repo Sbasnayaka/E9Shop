@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E9 Shop | Join</title>
+    <link rel="icon" href="assets/icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell form-screen">
+      <button class="form-back" data-back aria-label="Back to previous page">← Back</button>
+      <div class="form-card">
+        <div style="text-align: center; margin-bottom: 0.25rem">
+          <img class="form-logo" src="assets/icon.png" alt="E9 Shop icon" />
+        </div>
+        <h1>Join our community <span class="accent">Free !!</span></h1>
+        <p>Stay updated with the latest news and services.</p>
+        <form id="user-form" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input class="input" id="name" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="mobile">Mobile Number</label>
+            <input class="input" id="mobile" name="mobile" type="tel" placeholder="Mobile number" required />
+          </div>
+          <div class="field">
+            <label for="country">Country</label>
+            <input class="input" id="country" name="country" type="text" placeholder="Country" required />
+          </div>
+          <button class="pill" type="submit" style="width: 100%; margin-top: var(--space-2)">Send</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+
