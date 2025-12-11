@@ -1,0 +1,20 @@
+# Supabase config (contains API keys - keep secret!)
+config.js
+
+# Node modules (if you install any packages later)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
