@@ -121,7 +121,15 @@ const loadBanner = async () => {
 
     const heroVisual = document.querySelector(".hero-visual");
     if (heroVisual && data.image_url) {
-      heroVisual.style.backgroundImage = `url("${data.image_url}")`;
+      // normalize any backslashes and handle relative asset paths
+      let url = data.image_url.replace(/\\\\/g, "/").replace(/\\/g, "/");
+      if (url.startsWith("\\\\") || url.startsWith("//")) {
+        url = url.replace(/^\\\\+/, "https://").replace(/^\\/+/, "https://");
+      }
+      if (url.startsWith("/assets") || url.startsWith("assets")) {
+        url = `${window.location.origin}/${url.replace(/^\\/?/, "")}`;
+      }
+      heroVisual.style.backgroundImage = `url("${url}")`;
     }
   } catch (err) {
     console.error("Error loading banner:", err);

@@ -694,7 +694,7 @@
             </div>
             <div class="form-group">
               <label>
-                <input type="checkbox" id="setActive">
+                <input type="checkbox" id="setActive" checked>
                 Set as Active Banner
               </label>
             </div>
@@ -1230,6 +1230,9 @@
             <td>${banner.active ? '<span class="status-badge status-new">Active</span>' : '<span class="status-badge status-deleted">Inactive</span>'}</td>
             <td>${new Date(banner.created_at).toLocaleString()}</td>
             <td>
+              ${banner.active
+                ? `<button class="action-btn btn-secondary" onclick="deactivateBanner('${banner.id}')">Deactivate</button>`
+                : `<button class="action-btn btn-success" onclick="setBannerActive('${banner.id}')">Set Active</button>`}
               <button class="action-btn btn-danger" onclick="deleteBanner('${banner.id}', ${banner.active})">Delete</button>
             </td>
           </tr>
@@ -1282,6 +1285,39 @@
       }
     };
 
+    // Set banner active
+    window.setBannerActive = async (id) => {
+      const supabase = getSupabase();
+      if (!supabase) return;
+
+      try {
+        // set all to inactive
+        await supabase.from('banners').update({ active: false });
+        // set this one active
+        const { error } = await supabase.from('banners').update({ active: true }).eq('id', id);
+        if (error) throw error;
+        showSuccess('Banner set as active', 'bannersMessage');
+        loadBanners();
+      } catch (err) {
+        showError(err.message, 'bannersMessage');
+      }
+    };
+
+    // Deactivate banner
+    window.deactivateBanner = async (id) => {
+      const supabase = getSupabase();
+      if (!supabase) return;
+
+      try {
+        const { error } = await supabase.from('banners').update({ active: false }).eq('id', id);
+        if (error) throw error;
+        showSuccess('Banner deactivated', 'bannersMessage');
+        loadBanners();
+      } catch (err) {
+        showError(err.message, 'bannersMessage');
+      }
+    };
+
     // Add banner form
     document.getElementById('addBannerForm').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -1314,7 +1350,12 @@
           .from('assets')
           .getPublicUrl(fileName);
 
-        const imageUrl = urlData.publicUrl;
+        // Normalize URL to avoid backslash issues and bust cache
+        const rawUrl = urlData?.publicUrl || '';
+        const normalizedUrl = rawUrl.replace(/\\/g, '/');
+        const imageUrl = normalizedUrl
+          ? `${normalizedUrl}${normalizedUrl.includes('?') ? '&' : '?'}v=${Date.now()}`
+          : null;
 
         // If setting as active, set all others to inactive
         if (setActive) {
