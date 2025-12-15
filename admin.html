@@ -770,6 +770,17 @@
       return window.supabaseClient || null;
     };
 
+    // Normalize image URL (handles backslashes and relative assets)
+    const normalizeUrl = (url) => {
+      if (!url) return "";
+      let imgUrl = url.replace(/\\/g, "/");
+      if (imgUrl.startsWith("//")) imgUrl = "https:" + imgUrl;
+      if (imgUrl.startsWith("/assets") || imgUrl.startsWith("assets")) {
+        imgUrl = `${window.location.origin}/${imgUrl.replace(/^\/?/, "")}`;
+      }
+      return imgUrl;
+    };
+
     // Toast notification function
     const showToast = (message, type = 'success') => {
       const container = document.getElementById('toastContainer');
@@ -1222,9 +1233,11 @@
           return;
         }
 
-        tbodyEl.innerHTML = data.map(banner => `
+        tbodyEl.innerHTML = data.map(banner => {
+          const imgUrl = normalizeUrl(banner.image_url || "");
+          return `
           <tr>
-            <td>${banner.image_url ? `<img src="${banner.image_url}" alt="${banner.title}" />` : '-'}</td>
+            <td>${imgUrl ? `<img src="${imgUrl}" alt="${banner.title || 'banner'}" /assets/>` : '-'}</td>
             <td>${banner.title || '-'}</td>
             <td>${(banner.description || '').substring(0, 100)}${banner.description && banner.description.length > 100 ? '...' : ''}</td>
             <td>${banner.active ? '<span class="status-badge status-new">Active</span>' : '<span class="status-badge status-deleted">Inactive</span>'}</td>
@@ -1236,7 +1249,8 @@
               <button class="action-btn btn-danger" onclick="deleteBanner('${banner.id}', ${banner.active})">Delete</button>
             </td>
           </tr>
-        `).join('');
+        `;
+        }).join('');
 
         tableEl.style.display = 'table';
       } catch (err) {
@@ -1350,12 +1364,7 @@
           .from('assets')
           .getPublicUrl(fileName);
 
-        // Normalize URL to avoid backslash issues and bust cache
-        const rawUrl = urlData?.publicUrl || '';
-        const normalizedUrl = rawUrl.replace(/\\/g, '/');
-        const imageUrl = normalizedUrl
-          ? `${normalizedUrl}${normalizedUrl.includes('?') ? '&' : '?'}v=${Date.now()}`
-          : null;
+        const imageUrl = normalizeUrl(urlData?.publicUrl);
 
         // If setting as active, set all others to inactive
         if (setActive) {

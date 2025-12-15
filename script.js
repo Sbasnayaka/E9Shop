@@ -105,6 +105,17 @@ const loadServices = async () => {
   }
 };
 
+// Normalize image URL (handles backslashes and relative assets)
+const normalizeUrl = (url) => {
+  if (!url) return "";
+  let imgUrl = url.replace(/\\/g, "/");
+  if (imgUrl.startsWith("//")) imgUrl = "https:" + imgUrl;
+  if (imgUrl.startsWith("/assets") || imgUrl.startsWith("assets")) {
+    imgUrl = `${window.location.origin}/${imgUrl.replace(/^\/?/, "")}`;
+  }
+  return imgUrl;
+};
+
 // Load active banner from Supabase
 const loadBanner = async () => {
   const supabase = getSupabase();
@@ -113,23 +124,33 @@ const loadBanner = async () => {
   }
 
   try {
-    const { data, error } = await supabase.from("banners").select("*").eq("active", true).limit(1).single();
+    // Prefer active banner; if none, fall back to latest banner
+    let { data, error } = await supabase
+      .from("banners")
+      .select("*")
+      .eq("active", true)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .single();
 
     if (error || !data) {
+      const fallback = await supabase
+        .from("banners")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .single();
+      data = fallback.data;
+    }
+
+    if (!data || !data.image_url) {
       return;
     }
 
     const heroVisual = document.querySelector(".hero-visual");
     if (heroVisual && data.image_url) {
-      // normalize any backslashes and handle relative asset paths
-      let url = data.image_url.replace(/\\\\/g, "/").replace(/\\/g, "/");
-      if (url.startsWith("\\\\") || url.startsWith("//")) {
-        url = url.replace(/^\\\\+/, "https://").replace(/^\\/+/, "https://");
-      }
-      if (url.startsWith("/assets") || url.startsWith("assets")) {
-        url = `${window.location.origin}/${url.replace(/^\\/?/, "")}`;
-      }
-      heroVisual.style.backgroundImage = `url("${url}")`;
+      const imgUrl = normalizeUrl(data.image_url);
+      heroVisual.style.backgroundImage = `url("${imgUrl}")`;
     }
   } catch (err) {
     console.error("Error loading banner:", err);
