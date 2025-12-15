@@ -16,7 +16,7 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-      background: #f5f5f5;
+      background: #e5d0ff;
       color: #333;
       line-height: 1.6;
     }
@@ -27,6 +27,53 @@
       padding: 2rem;
     }
 
+    /* Toast Notifications */
+    #toastContainer {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toast {
+      background: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      min-width: 300px;
+      animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+      animation-fill-mode: forwards;
+    }
+
+    .toast.error {
+      border-left: 4px solid #dc3545;
+    }
+
+    .toast.success {
+      border-left: 4px solid #28a745;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: translateX(400px);
+      }
+    }
+
     /* Login Section */
     .login-section {
       max-width: 400px;
@@ -34,7 +81,7 @@
       background: white;
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
     .login-section h1 {
@@ -54,12 +101,42 @@
       color: #555;
     }
 
-    .form-group input {
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
       width: 100%;
       padding: 0.75rem;
       border: 1px solid #ddd;
       border-radius: 8px;
       font-size: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #a375db;
+      box-shadow: 0 0 0 3px rgba(163, 117, 219, 0.1);
+      outline: none;
+    }
+
+    .form-group input[type="checkbox"] {
+      width: auto;
+      margin-right: 0.5rem;
+    }
+
+    .form-group input[type="file"] {
+      padding: 0.5rem;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .form-row .form-group {
+      flex: 1;
     }
 
     .btn {
@@ -72,28 +149,55 @@
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .btn:hover {
       background: #8e5fc7;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .btn-inline {
+      width: auto;
+      padding: 0.5rem 1rem;
+      margin: 0.25rem;
     }
 
     .btn-danger {
       background: #dc3545;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .btn-danger:hover {
       background: #c82333;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
 
     .btn-secondary {
       background: #6c757d;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .btn-secondary:hover {
       background: #5a6268;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
+
+    .btn-success {
+      background: #28a745;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .btn-success:hover {
+      background: #218838;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
 
     .error {
       background: #fee;
@@ -106,12 +210,21 @@
 
     .success {
       background: #efe;
-      color: #3c3;
+      color: #a375db;
       padding: 0.75rem;
       border-radius: 8px;
       margin-bottom: 1rem;
-      border: 1px solid #cfc;
+      border: 1px solid #c7a0f8b7;
     }
+
+    .export-actions {
+  display: flex;
+  gap: 0.5rem;        /* closer spacing */
+  margin-bottom: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 
     /* Dashboard Section */
     .dashboard-section {
@@ -130,25 +243,54 @@
       background: white;
       padding: 1.5rem;
       border-radius: 12px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
 
     .dashboard-header h1 {
       color: #613498;
     }
 
+    .header-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    
+
+
     .logout-btn {
       padding: 0.5rem 1.5rem;
-      background: #dc3545;
+      background: #a375db;
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .logout-btn:hover {
-      background: #c82333;
+      background: #613498;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .home-btn {
+      padding: 0.5rem 1.5rem;
+      background: #a375db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .home-btn:hover {
+      background: #613498;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
 
     /* Tabs */
@@ -159,7 +301,8 @@
       background: white;
       padding: 1rem;
       border-radius: 12px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      flex-wrap: wrap;
     }
 
     .tab-btn {
@@ -170,12 +313,19 @@
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
-      transition: all 0.2s;
+      transition: all 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .tab-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     .tab-btn.active {
       background: #a375db;
       color: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     .tab-content {
@@ -186,18 +336,65 @@
       display: block;
     }
 
+    /* Filters */
+    .filters {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+
+    .filters .form-group {
+      margin-bottom: 0;
+      flex: 1;
+      min-width: 150px;
+    }
+
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .stat-card h3 {
+      color: #613498;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card p {
+      color: #666;
+      font-weight: 600;
+    }
+
     /* Table */
     .table-container {
       background: white;
       padding: 1.5rem;
       border-radius: 12px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
       overflow-x: auto;
     }
 
     table {
       width: 100%;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0;
     }
 
     th, td {
@@ -207,13 +404,14 @@
     }
 
     th {
-      background: #f8f9fa;
+      background: #b67aff33;
       font-weight: 600;
       color: #613498;
     }
 
     tr:hover {
       background: #f8f9fa;
+      transition: background 0.2s;
     }
 
     .status-badge {
@@ -225,8 +423,8 @@
     }
 
     .status-new {
-      background: #d4edda;
-      color: #155724;
+      background: #dec9f8;
+      color: #391862;
     }
 
     .status-deleted {
@@ -242,16 +440,91 @@
       cursor: pointer;
       font-size: 0.85rem;
       font-weight: 600;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .action-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     .btn-export {
-      background: #28a745;
+      background: #834dc6;
       color: white;
       margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .btn-export:hover {
-      background: #218838;
+      background: #834dc6;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-header h2 {
+      color: #613498;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .close-btn:hover {
+      color: #333;
+    }
+
+    /* Form Section */
+    .form-section {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      margin-top: 1.5rem;
+    }
+
+    .form-section h3 {
+      color: #613498;
+      margin-bottom: 1rem;
     }
 
     .loading {
@@ -270,103 +543,224 @@
       max-width: 80px;
       height: auto;
       border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
-  <!-- Login Section -->
-  <div class="login-section" id="loginSection">
-    <h1>E9 Shop Admin</h1>
-    <div id="loginError" class="error" style="display: none;"></div>
-    <form id="loginForm">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+  <!-- Toast Container -->
+  <div id="toastContainer"></div>
+
+  <div class="container">
+    <!-- Login Section -->
+    <div class="login-section" id="loginSection">
+      <h1>E9 Shop Admin</h1>
+      <div id="loginError" class="error" style="display: none;"></div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn">Login</button>
+      </form>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div class="dashboard-section" id="dashboardSection">
+      <div class="dashboard-header">
+        
+        <img src="assets/logo.png" alt="E9 Shop logo" />
+        <h1>Admin Dashboard</h1>
+        <div class="header-actions">
+          <button class="logout-btn" id="logoutBtn">Logout</button>
+          <button class="home-btn" id="homeBtn">Home</button>
+        </div>        
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="leads">Leads</button>
+        <button class="tab-btn" data-tab="services">Services</button>
+        <button class="tab-btn" data-tab="banners">Banners</button>
+        <button class="tab-btn" data-tab="stats">Status</button>
       </div>
-      <button type="submit" class="btn">Login</button>
-    </form>
+
+      <!-- Leads Tab -->
+      <div class="tab-content active" id="leadsTab">
+        <div class="filters">
+          <div class="form-group">
+            <label for="statusFilter">Status</label>
+            <select id="statusFilter">
+              <option value="all">All</option>
+              <option value="new">New</option>
+              <option value="deleted">Deleted</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate">
+          </div>
+          <div class="form-group">
+            <label for="endDate">End Date</label>
+            <input type="date" id="endDate">
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-inline" onclick="applyFilters()">Apply Filters</button>
+          </div>
+        </div>
+        <div class="table-container">
+          <div class="export-actions">
+            <button class="btn btn-export" id="exportLeadsBtn">Export CSV</button>
+            <button class="btn btn-export" id="restoreAllBtn">Restore All Deleted</button>
+          </div>          
+          <div id="leadsMessage"></div>
+          <div id="leadsLoading" class="loading">Loading leads...</div>
+          <table id="leadsTable" style="display: none;">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Country</th>
+                <th>Submitted At</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="leadsTableBody"></tbody>
+          </table>
+          <div id="leadsEmpty" class="empty" style="display: none;">No leads found.</div>
+        </div>
+      </div>
+
+      <!-- Services Tab -->
+      <div class="tab-content" id="servicesTab">
+        <div class="table-container">
+          <div id="servicesMessage"></div>
+          <div id="servicesLoading" class="loading">Loading services...</div>
+          <table id="servicesTable" style="display: none;">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Created At</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="servicesTableBody"></tbody>
+          </table>
+          <div id="servicesEmpty" class="empty" style="display: none;">No services found.</div>
+        </div>
+      </div>
+
+      <!-- Banners Tab -->
+      <div class="tab-content" id="bannersTab">
+        <div class="table-container">
+          <div id="bannersMessage"></div>
+          <div id="bannersLoading" class="loading">Loading banners...</div>
+          <table id="bannersTable" style="display: none;">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Active</th>
+                <th>Created At</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="bannersTableBody"></tbody>
+          </table>
+          <div id="bannersEmpty" class="empty" style="display: none;">No banners found.</div>
+        </div>
+        <div class="form-section">
+          <h3>Add New Banner</h3>
+          <form id="addBannerForm">
+            <div class="form-group">
+              <label for="bannerImage">Banner Image *</label>
+              <input type="file" id="bannerImage" accept="image/*" required>
+            </div>
+            <div class="form-group">
+              <label for="bannerTitle">Title</label>
+              <input type="text" id="bannerTitle" placeholder="Optional">
+            </div>
+            <div class="form-group">
+              <label for="bannerDesc">Description</label>
+              <textarea id="bannerDesc" rows="3" placeholder="Optional"></textarea>
+            </div>
+            <div class="form-group">
+              <label>
+                <input type="checkbox" id="setActive">
+                Set as Active Banner
+              </label>
+            </div>
+            <button type="submit" class="btn">Add Banner</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Status Tab -->
+      <div class="tab-content" id="statsTab">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3 id="totalLeads">0</h3>
+            <p>Total Leads</p>
+          </div>
+          <div class="stat-card">
+            <h3 id="newLeads">0</h3>
+            <p>New Leads</p>
+          </div>
+          <div class="stat-card">
+            <h3 id="deletedLeads">0</h3>
+            <p>Deleted Leads</p>
+          </div>
+          <div class="stat-card">
+            <h3 id="totalServices">0</h3>
+            <p>Total Services</p>
+          </div>
+          <div class="stat-card">
+            <h3 id="activeBanners">0</h3>
+            <p>Active Banners</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Dashboard Section -->
-  <div class="dashboard-section" id="dashboardSection">
-    <div class="dashboard-header">
-      <h1>E9 Shop Admin Dashboard</h1>
-      <button class="logout-btn" id="logoutBtn">Logout</button>
-    </div>
-
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="leads">Leads</button>
-      <button class="tab-btn" data-tab="services">Services</button>
-      <button class="tab-btn" data-tab="banners">Banners</button>
-    </div>
-
-    <!-- Leads Tab -->
-    <div class="tab-content active" id="leadsTab">
-      <div class="table-container">
-        <button class="btn btn-export" id="exportLeadsBtn">Export CSV</button>
-        <div id="leadsMessage"></div>
-        <div id="leadsLoading" class="loading">Loading leads...</div>
-        <table id="leadsTable" style="display: none;">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Mobile</th>
-              <th>Country</th>
-              <th>Submitted At</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="leadsTableBody"></tbody>
-        </table>
-        <div id="leadsEmpty" class="empty" style="display: none;">No leads found.</div>
+  <!-- Edit Service Modal -->
+  <div class="modal" id="editServiceModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Edit Service</h2>
+        <button class="close-btn" onclick="closeEditModal()">&times;</button>
       </div>
-    </div>
-
-    <!-- Services Tab -->
-    <div class="tab-content" id="servicesTab">
-      <div class="table-container">
-        <div id="servicesMessage"></div>
-        <div id="servicesLoading" class="loading">Loading services...</div>
-        <table id="servicesTable" style="display: none;">
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Category</th>
-              <th>Created At</th>
-            </tr>
-          </thead>
-          <tbody id="servicesTableBody"></tbody>
-        </table>
-        <div id="servicesEmpty" class="empty" style="display: none;">No services found.</div>
-      </div>
-    </div>
-
-    <!-- Banners Tab -->
-    <div class="tab-content" id="bannersTab">
-      <div class="table-container">
-        <div id="bannersMessage"></div>
-        <div id="bannersLoading" class="loading">Loading banners...</div>
-        <table id="bannersTable" style="display: none;">
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Active</th>
-              <th>Created At</th>
-            </tr>
-          </thead>
-          <tbody id="bannersTableBody"></tbody>
-        </table>
-        <div id="bannersEmpty" class="empty" style="display: none;">No banners found.</div>
-      </div>
+      <form id="editServiceForm">
+        <input type="hidden" id="editServiceId">
+        <div class="form-group">
+          <label for="editTitle">Title *</label>
+          <input type="text" id="editTitle" required>
+        </div>
+        <div class="form-group">
+          <label for="editDescription">Description</label>
+          <textarea id="editDescription" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="editCategory">Category</label>
+          <input type="text" id="editCategory">
+        </div>
+        <div class="form-group">
+          <label for="editImageUrl">Image URL</label>
+          <input type="text" id="editImageUrl">
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <button type="submit" class="btn">Save Changes</button>
+          <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -376,11 +770,24 @@
       return window.supabaseClient || null;
     };
 
+    // Toast notification function
+    const showToast = (message, type = 'success') => {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.textContent = message;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
+    };
+
     // Check if user is logged in
     const checkAuth = async () => {
       const supabase = getSupabase();
       if (!supabase) {
-        showError('Supabase not configured');
+        showToast('Supabase not configured', 'error');
         return false;
       }
 
@@ -398,6 +805,7 @@
           errorEl.style.display = 'none';
         }, 5000);
       }
+      showToast(message, 'error');
     };
 
     // Show success message
@@ -409,6 +817,7 @@
           successEl.innerHTML = '';
         }, 3000);
       }
+      showToast(message, 'success');
     };
 
     // Login
@@ -437,15 +846,22 @@
       }
     });
 
-    // Logout
+    // Logout with confirmation
     document.getElementById('logoutBtn').addEventListener('click', async () => {
-      const supabase = getSupabase();
-      if (supabase) {
-        await supabase.auth.signOut();
+      if (confirm('Are you sure you want to logout?')) {
+        const supabase = getSupabase();
+        if (supabase) {
+          await supabase.auth.signOut();
+        }
+        document.getElementById('loginSection').style.display = 'block';
+        document.getElementById('dashboardSection').classList.remove('active');
       }
-      document.getElementById('loginSection').style.display = 'block';
-      document.getElementById('dashboardSection').classList.remove('active');
     });
+
+    document.getElementById('homeBtn').addEventListener('click', () => {
+    window.location.href = 'index.html';
+    });
+
 
     // Tab switching
     document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -460,6 +876,7 @@
         if (tabName === 'leads') loadLeads();
         else if (tabName === 'services') loadServices();
         else if (tabName === 'banners') loadBanners();
+        else if (tabName === 'stats') loadStats();
       });
     });
 
@@ -470,7 +887,22 @@
       loadBanners();
     };
 
-    // Load Leads
+    // Filter variables
+    let currentStatusFilter = 'all';
+    let currentStartDate = null;
+    let currentEndDate = null;
+
+    // Apply filters
+    window.applyFilters = () => {
+      currentStatusFilter = document.getElementById('statusFilter').value;
+      const startDate = document.getElementById('startDate').value;
+      const endDate = document.getElementById('endDate').value;
+      currentStartDate = startDate || null;
+      currentEndDate = endDate || null;
+      loadLeads();
+    };
+
+    // Load Leads with filters
     const loadLeads = async () => {
       const supabase = getSupabase();
       if (!supabase) return;
@@ -485,10 +917,22 @@
         tableEl.style.display = 'none';
         emptyEl.style.display = 'none';
 
-        const { data, error } = await supabase
-          .from('leads')
-          .select('*')
-          .order('submitted_at', { ascending: false });
+        let query = supabase.from('leads').select('*');
+
+        // Apply status filter
+        if (currentStatusFilter !== 'all') {
+          query = query.eq('status', currentStatusFilter);
+        }
+
+        // Apply date filters
+        if (currentStartDate) {
+          query = query.gte('submitted_at', currentStartDate + 'T00:00:00');
+        }
+        if (currentEndDate) {
+          query = query.lte('submitted_at', currentEndDate + 'T23:59:59');
+        }
+
+        const { data, error } = await query.order('submitted_at', { ascending: false });
 
         loadingEl.style.display = 'none';
 
@@ -559,25 +1003,55 @@
       }
     };
 
+    // Restore all deleted leads
+    document.getElementById('restoreAllBtn').addEventListener('click', async () => {
+      if (confirm('Are you sure you want to restore all deleted leads?')) {
+        const supabase = getSupabase();
+        if (!supabase) return;
+
+        try {
+          const { error } = await supabase
+            .from('leads')
+            .update({ status: 'new' })
+            .eq('status', 'deleted');
+
+          if (error) throw error;
+
+          showSuccess('All deleted leads restored', 'leadsMessage');
+          loadLeads();
+        } catch (err) {
+          showError(err.message, 'leadsMessage');
+        }
+      }
+    });
+
     // Export CSV
     document.getElementById('exportLeadsBtn').addEventListener('click', async () => {
       const supabase = getSupabase();
       if (!supabase) return;
 
       try {
-        const { data, error } = await supabase
-          .from('leads')
-          .select('*')
-          .order('submitted_at', { ascending: false });
+        let query = supabase.from('leads').select('*');
+
+        if (currentStatusFilter !== 'all') {
+          query = query.eq('status', currentStatusFilter);
+        }
+        if (currentStartDate) {
+          query = query.gte('submitted_at', currentStartDate + 'T00:00:00');
+        }
+        if (currentEndDate) {
+          query = query.lte('submitted_at', currentEndDate + 'T23:59:59');
+        }
+
+        const { data, error } = await query.order('submitted_at', { ascending: false });
 
         if (error) throw error;
 
         if (!data || data.length === 0) {
-          alert('No leads to export');
+          showToast('No leads to export', 'error');
           return;
         }
 
-        // Create CSV
         const headers = ['Name', 'Mobile', 'Country', 'Submitted At', 'Status'];
         const rows = data.map(lead => [
           lead.name || '',
@@ -592,7 +1066,6 @@
           ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
         ].join('\n');
 
-        // Download
         const blob = new Blob([csv], { type: 'text/csv' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -643,6 +1116,9 @@
             <td>${(service.description || '').substring(0, 100)}${service.description && service.description.length > 100 ? '...' : ''}</td>
             <td>${service.category || '-'}</td>
             <td>${new Date(service.created_at).toLocaleString()}</td>
+            <td>
+              <button class="action-btn btn-success" onclick="openEditModal('${service.id}')">Edit</button>
+            </td>
           </tr>
         `).join('');
 
@@ -652,6 +1128,70 @@
         showError(err.message, 'servicesMessage');
       }
     };
+
+    // Open edit modal
+    window.openEditModal = async (serviceId) => {
+      const supabase = getSupabase();
+      if (!supabase) return;
+
+      try {
+        const { data, error } = await supabase
+          .from('services')
+          .select('*')
+          .eq('id', serviceId)
+          .single();
+
+        if (error) throw error;
+
+        document.getElementById('editServiceId').value = data.id;
+        document.getElementById('editTitle').value = data.title || '';
+        document.getElementById('editDescription').value = data.description || '';
+        document.getElementById('editCategory').value = data.category || '';
+        document.getElementById('editImageUrl').value = data.image_url || '';
+        document.getElementById('editServiceModal').classList.add('active');
+      } catch (err) {
+        showError(err.message);
+      }
+    };
+
+    // Close edit modal
+    window.closeEditModal = () => {
+      document.getElementById('editServiceModal').classList.remove('active');
+      document.getElementById('editServiceForm').reset();
+    };
+
+    // Save edited service
+    document.getElementById('editServiceForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const supabase = getSupabase();
+      if (!supabase) return;
+
+      const id = document.getElementById('editServiceId').value;
+      const title = document.getElementById('editTitle').value;
+      const description = document.getElementById('editDescription').value;
+      const category = document.getElementById('editCategory').value;
+      const imageUrl = document.getElementById('editImageUrl').value;
+
+      try {
+        const { error } = await supabase
+          .from('services')
+          .update({
+            title,
+            description,
+            category,
+            image_url: imageUrl
+          })
+          .eq('id', id);
+
+        if (error) throw error;
+
+        showSuccess('Service updated successfully');
+        closeEditModal();
+        loadServices();
+      } catch (err) {
+        showError(err.message);
+      }
+    });
 
     // Load Banners
     const loadBanners = async () => {
@@ -689,6 +1229,9 @@
             <td>${(banner.description || '').substring(0, 100)}${banner.description && banner.description.length > 100 ? '...' : ''}</td>
             <td>${banner.active ? '<span class="status-badge status-new">Active</span>' : '<span class="status-badge status-deleted">Inactive</span>'}</td>
             <td>${new Date(banner.created_at).toLocaleString()}</td>
+            <td>
+              <button class="action-btn btn-danger" onclick="deleteBanner('${banner.id}', ${banner.active})">Delete</button>
+            </td>
           </tr>
         `).join('');
 
@@ -696,6 +1239,151 @@
       } catch (err) {
         loadingEl.style.display = 'none';
         showError(err.message, 'bannersMessage');
+      }
+    };
+
+    // Delete banner
+    window.deleteBanner = async (id, isActive) => {
+      if (!confirm('Are you sure you want to delete this banner?')) return;
+
+      const supabase = getSupabase();
+      if (!supabase) return;
+
+      try {
+        if (isActive) {
+          // Get all banners to set another as active
+          const { data: banners } = await supabase
+            .from('banners')
+            .select('*')
+            .neq('id', id);
+
+          if (banners && banners.length > 0) {
+            const setActive = confirm('This is the active banner. Set another banner as active?');
+            if (setActive) {
+              await supabase
+                .from('banners')
+                .update({ active: true })
+                .eq('id', banners[0].id);
+            }
+          }
+        }
+
+        const { error } = await supabase
+          .from('banners')
+          .delete()
+          .eq('id', id);
+
+        if (error) throw error;
+
+        showSuccess('Banner deleted successfully', 'bannersMessage');
+        loadBanners();
+      } catch (err) {
+        showError(err.message, 'bannersMessage');
+      }
+    };
+
+    // Add banner form
+    document.getElementById('addBannerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const supabase = getSupabase();
+      if (!supabase) return;
+
+      const fileInput = document.getElementById('bannerImage');
+      const title = document.getElementById('bannerTitle').value;
+      const description = document.getElementById('bannerDesc').value;
+      const setActive = document.getElementById('setActive').checked;
+
+      if (!fileInput.files || fileInput.files.length === 0) {
+        showError('Please select an image file');
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const fileName = `${Date.now()}_${file.name}`;
+
+      try {
+        // Upload image to storage
+        const { data: uploadData, error: uploadError } = await supabase.storage
+          .from('assets')
+          .upload(fileName, file);
+
+        if (uploadError) throw uploadError;
+
+        // Get public URL
+        const { data: urlData } = supabase.storage
+          .from('assets')
+          .getPublicUrl(fileName);
+
+        const imageUrl = urlData.publicUrl;
+
+        // If setting as active, set all others to inactive
+        if (setActive) {
+          await supabase
+            .from('banners')
+            .update({ active: false });
+        }
+
+        // Insert new banner
+        const { error: insertError } = await supabase
+          .from('banners')
+          .insert([{
+            title: title || null,
+            description: description || null,
+            image_url: imageUrl,
+            active: setActive
+          }]);
+
+        if (insertError) throw insertError;
+
+        showSuccess('Banner added successfully', 'bannersMessage');
+        document.getElementById('addBannerForm').reset();
+        loadBanners();
+      } catch (err) {
+        showError(err.message, 'bannersMessage');
+      }
+    });
+
+    // Load Stats
+    const loadStats = async () => {
+      const supabase = getSupabase();
+      if (!supabase) return;
+
+      try {
+        // Total leads
+        const { count: totalLeads } = await supabase
+          .from('leads')
+          .select('*', { count: 'exact', head: true });
+
+        // New leads
+        const { count: newLeads } = await supabase
+          .from('leads')
+          .select('*', { count: 'exact', head: true })
+          .eq('status', 'new');
+
+        // Deleted leads
+        const { count: deletedLeads } = await supabase
+          .from('leads')
+          .select('*', { count: 'exact', head: true })
+          .eq('status', 'deleted');
+
+        // Total services
+        const { count: totalServices } = await supabase
+          .from('services')
+          .select('*', { count: 'exact', head: true });
+
+        // Active banners
+        const { count: activeBanners } = await supabase
+          .from('banners')
+          .select('*', { count: 'exact', head: true })
+          .eq('active', true);
+
+        document.getElementById('totalLeads').textContent = totalLeads || 0;
+        document.getElementById('newLeads').textContent = newLeads || 0;
+        document.getElementById('deletedLeads').textContent = deletedLeads || 0;
+        document.getElementById('totalServices').textContent = totalServices || 0;
+        document.getElementById('activeBanners').textContent = activeBanners || 0;
+      } catch (err) {
+        showToast('Error loading stats', 'error');
       }
     };
 
@@ -711,4 +1399,3 @@
   </script>
 </body>
 </html>
-
