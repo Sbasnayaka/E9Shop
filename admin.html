@@ -1323,12 +1323,11 @@
             .update({ active: false });
         }
 
-        // Insert new banner
+        // Insert new banner (without description to match current DB schema)
         const { error: insertError } = await supabase
           .from('banners')
           .insert([{
             title: title || null,
-            description: description || null,
             image_url: imageUrl,
             active: setActive
           }]);
